@@ -63,18 +63,27 @@ export default defineConfig({
           icon: 'smile',
           path: '/dashboard/analysis',
           component: './Dashboard/Analysis',
+          wrappers: [
+            '@/routeInterceptor',
+          ],
         },
         {
           name: 'monitor',
           icon: 'smile',
           path: '/dashboard/monitor',
           component: './Dashboard/Monitor',
+          wrappers: [
+            '@/routeInterceptor',
+          ],
         },
         {
           name: 'workplace',
           icon: 'smile',
           path: '/dashboard/workplace',
           component: './Dashboard/Workplace',
+          wrappers: [
+            '@/routeInterceptor',
+          ]
         },
       ],
     },
