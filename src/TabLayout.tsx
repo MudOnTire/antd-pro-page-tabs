@@ -3,7 +3,7 @@ import { Tabs } from 'antd';
 import { context, provider as TabsProvider } from './context';
 import { UmiComponentProps, CONTEXT_ACTIONS } from './types';
 import { isTabActive } from './utils';
-import styles from './index.css';
+import styles from './index.less';
 
 const { TabPane } = Tabs;
 
