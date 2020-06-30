@@ -23,7 +23,7 @@ npm install antd-pro-page-tabs
 This project depends on [umi](https://umijs.org/)'s [routing system](https://umijs.org/docs/routing) and [@umijs/plugin-layout
 ](https://umijs.org/plugins/plugin-layout), all top level routes should be wrapped in a `TabLayout`, and pages need to be displayed in a `Tab` should be wrapped by a `RouteWatcher` in order to notify the library when that page open..
 
-Since umi's config file only receive strings as route component's values. So we can create two files in our project and import/export `TabLayout` and `RouteWatcher` from the library.
+Since umi's config file only receive strings as route component's values, we can create two files in our project and import/export `TabLayout` and `RouteWatcher` from the library.
 
 For example, we create `TabLayout.tsx` and `RouteWatcher.tsx` in `src/components/PageTab`:
 
@@ -45,8 +45,6 @@ export default RouteWatcher;
 ```
 
 Next, we update the routing configuration of our project like:
-
-**.umirc.ts** or **config.ts**
 
 ```js
 const RouteWatcher = '@/components/PageTab/RouteWatcher';
@@ -97,15 +95,15 @@ export default {
 
 * Close opened tabs by click `x` button
 
-* Tab and route is a one-to-one relationship, pages of different route will be in different tabs, different pages of same route (like news detail pages) will be in the same tab
+* Tab and route is a one-to-one relationship, pages of different route will be in different tabs, different pages of same route (like news detail pages) will be in the same tab (new page replace the old)
 
 * If all tabs are closed, page of root route `'/'` will be opened
 
 # Todos
 
-While this library is still a simple prototype, there are still a lot things i can do to make it better:
+While this library is still a simple prototype, there are a lot things i can do to make it better:
 
-* Add right-click context menus, including: close other tabs, close tabs on the right
+* Add right-click context menus, including: close all tabs, close other tabs, close tabs on the right
 
 * Add APIs to close specific tabs programmatically
 
