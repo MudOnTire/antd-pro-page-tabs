@@ -97,7 +97,7 @@ export default {
 
 * Tab and route is a one-to-one relationship, pages of different route will be in different tabs, different pages of same route (like news detail pages) will be in the same tab
 
-* If all tabs are closed, page of root route will be opened
+* If all tabs are closed, page of root route `'/'` will be opened
 
 # Todos
 
