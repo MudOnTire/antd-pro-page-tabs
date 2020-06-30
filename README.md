@@ -1,10 +1,10 @@
 # antd-pro-page-tabs
 
-Page tab component for umi or ant design pro projects. 🚴🏻
+Page tabs component for umi or ant design pro projects. 🚴🏻
 
 ![demo](Antd-Pro-Page-Tabs-demo.gif)
 
-You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !
+You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !!
 
 # Installation
 
@@ -46,6 +46,8 @@ export default RouteWatcher;
 
 Next, we update the routing configuration of our project like:
 
+**.umirc.ts** or **config.ts**
+
 ```js
 const RouteWatcher = '@/components/PageTab/RouteWatcher';
 
@@ -56,7 +58,7 @@ export default {
     {
       path: '/',
       component: '@/components/PageTab/TabLayout',
-      flatMenu: true, // lift sub-routes to top up
+      flatMenu: true, // lift sub-routes up to top
       routes: [
         {
           name: 'Home',
@@ -111,4 +113,4 @@ While this library is still a simple prototype, there are still a lot things i c
 
 * etc..
 
-Any suggestions is welcomed. Enjoy! 🎈
+Any suggestion is welcomed. Enjoy! 🎈
