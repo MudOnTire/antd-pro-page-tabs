@@ -14,11 +14,17 @@
     "build": "father build"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "^16.9.0"
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.13.0",
     "father": "^2.16.0",
     "typescript": "^3.3.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@types/lodash": "^4.14.157",
+    "antd": "^4.4.0",
+    "lodash": "^4.17.15"
+  }
 }

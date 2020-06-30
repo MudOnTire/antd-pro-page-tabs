@@ -1,4 +1,11 @@
+.tabContainer {
+  background-color: #fff;
+  padding-top: 48px;
+}
 
-.button {
-  color: red;
+.tabContainer .ant-tabs-nav {
+  position: fixed;
+  top: 48px;
+  width: 100%;
+  background-color: #fff;
 }
