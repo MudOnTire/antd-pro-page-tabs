@@ -87,4 +87,26 @@ export default {
 
 **💥 Don't forget to set `flatMenu` of the root route to `true`, it will hide the root route menu and lift the sub-routes to the top level, and then menus will be created for them.**
 
-That's all. Enjoy! 🎈
+# Features
+
+* Enable/disable opening pages in tab by setting `RouteWatcher` or not
+
+* Keep pages' states alive when switching between tabs
+
+* Close opened tabs by click `x` button
+
+* Tab and route is a one-to-one relationship, pages of different route will be in different tabs, different pages of same route (like news detail pages) will be in the same tab
+
+# Todos
+
+While this library is still a simple prototype, there are still a lot things i can do to make it better:
+
+* Add right-click context menus, including: close other tabs, close tabs on the right
+
+* Add APIs to close specific tabs programmatically
+
+* Add APIs to enable customizing tab bar or tab styles
+
+* etc..
+
+Any suggestions is welcomed. Enjoy! 🎈
