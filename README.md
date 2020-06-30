@@ -14,7 +14,7 @@ yarn add antd-pro-page-tabs
 
 or
 
-```
+```sh
 npm install antd-pro-page-tabs
 ```
 
@@ -29,7 +29,7 @@ For example, we create `TabLayout.tsx` and `RouteWatcher.tsx` in `src/components
 
 **TabLayout.tsx:**
 
-```
+```js
 import { TabLayout } from 'antd-pro-page-tabs';
 
 export default TabLayout;
@@ -38,7 +38,7 @@ export default TabLayout;
 
 **RouteWatcher.tsx**
 
-```
+```js
 import { RouteWatcher } from 'antd-pro-page-tabs';
 
 export default RouteWatcher;
@@ -46,7 +46,7 @@ export default RouteWatcher;
 
 Next, we update the routing configuration of our project like:
 
-```
+```js
 const RouteWatcher = '@/components/PageTab/RouteWatcher';
 
 export default {
