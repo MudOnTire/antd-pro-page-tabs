@@ -6,6 +6,14 @@ Page tabs component for umi or ant design pro projects. 🚴🏻
 
 You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !!
 
+# Requirements
+
+* React >= 16.8.x (I use react hooks under the hood)
+
+* UmiJS >= 3.x
+
+* Ant Design >= 4
+
 # Installation
 
 ```sh
