@@ -1,6 +1,6 @@
 {
   "name": "antd-pro-page-tabs",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Page tab component for umi or ant design pro projects",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -13,7 +13,10 @@
     "name": "MudOnTire",
     "email": "895157882@qq.como"
   },
-  "repository": "git@github.com:MudOnTire/antd-pro-page-tabs.git/antd-pro-page-tabs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:MudOnTire/antd-pro-page-tabs.git/antd-pro-page-tabs"
+  },
   "scripts": {
     "dev": "father doc dev",
     "build": "father build"
