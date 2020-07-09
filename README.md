@@ -107,11 +107,11 @@ export default {
 
 * If all tabs are closed, page of root route `'/'` will be opened
 
+* With right-click context menus to close target tab, close tabs to the right and close all tabs.
+
 # Todos
 
 While this library is still a simple prototype, there are a lot things i can do to make it better:
-
-* Add right-click context menus, including: close all tabs, close other tabs, close tabs on the right
 
 * Add APIs to close specific tabs programmatically
 
