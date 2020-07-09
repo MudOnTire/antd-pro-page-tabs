@@ -35,3 +35,8 @@ export interface UmiComponentProps {
   route: any;
   routes: any[];
 }
+
+export interface Position {
+  x: number;
+  y: number;
+}

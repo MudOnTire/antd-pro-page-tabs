@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Tabs } from 'antd';
 import { context, provider as TabsProvider } from './context';
-import { UmiComponentProps, CONTEXT_ACTIONS } from './types';
+import { UmiComponentProps, CONTEXT_ACTIONS, Tab, Position } from './types';
 import { isTabActive } from './utils';
+import ContextMenu from './ContextMenu';
 import styles from './index.less';
 
 const { TabPane } = Tabs;
@@ -15,6 +16,8 @@ const TabBar: React.FC<{
   history: any;
   defaultChildren: React.ReactNode;
 }> = props => {
+  const [targetTab, setTargetTab] = useState<Tab>();
+  const [position, setPosition] = useState<Position>();
   const store = useContext(context);
   const { tabs, dispatch } = store;
 
@@ -56,6 +59,27 @@ const TabBar: React.FC<{
     }
   };
 
+  /**
+   * Show context menu when right click tab menus
+   */
+  const handleContextMenu = (e: React.MouseEvent, tab: Tab) => {
+    e.preventDefault();
+    setTargetTab(tab);
+    setPosition({ x: e.clientX, y: e.clientY });
+  }
+
+  const attachEvents = () => {
+    function cleanTargetTab() {
+      setTargetTab(undefined)
+    }
+    document.addEventListener('click', cleanTargetTab);
+    return () => {
+      document.removeEventListener('click', cleanTargetTab);
+    }
+  }
+
+  useEffect(attachEvents, []);
+
   return (
     <div className={styles.tabContainer}>
       <Tabs
@@ -67,19 +91,30 @@ const TabBar: React.FC<{
       >
         {tabs.map(tab => {
           return (
-            <TabPane tab={tab.route.name} key={tab.location.pathname}>
+            <TabPane
+              tab={
+                <span
+                  onContextMenu={(e) => { handleContextMenu(e, tab) }}
+                  className={styles.tabLabel}
+                >
+                  {tab.route.name}
+                </span>
+              }
+              key={tab.location.pathname}>
               {tab.children}
             </TabPane>
           );
         })}
       </Tabs>
       {!isLocationInTab && defaultChildren}
+      <ContextMenu tab={targetTab} position={position} history={history} handleTabClose={handleEdit}/>
     </div>
   );
 };
 
 const TabLayout: React.FC<UmiComponentProps> = props => {
   const { children, location, history } = props;
+
   return (
     <TabsProvider>
       <TabBar
