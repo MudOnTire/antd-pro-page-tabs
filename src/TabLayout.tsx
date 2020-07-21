@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Tabs } from 'antd';
 import { context, provider as TabsProvider } from './context';
-import { UmiComponentProps, CONTEXT_ACTIONS, Tab, Position } from './types';
+import { UmiComponentProps, CONTEXT_ACTIONS, Tab, Position, ContextMenuLabels } from './types';
 import { isTabActive } from './utils';
 import ContextMenu from './ContextMenu';
 import styles from './index.less';
@@ -15,13 +15,14 @@ const TabBar: React.FC<{
   location: any;
   history: any;
   defaultChildren: React.ReactNode;
+  contextMenuLabels?: ContextMenuLabels
 }> = props => {
   const [targetTab, setTargetTab] = useState<Tab>();
   const [position, setPosition] = useState<Position>();
   const store = useContext(context);
   const { tabs, dispatch } = store;
 
-  const { location, defaultChildren, history } = props;
+  const { location, defaultChildren, history, contextMenuLabels } = props;
   const isLocationInTab = tabs.some(
     tab => tab.location.pathname === location.pathname,
   );
@@ -107,13 +108,23 @@ const TabBar: React.FC<{
         })}
       </Tabs>
       {!isLocationInTab && defaultChildren}
-      <ContextMenu tab={targetTab} position={position} history={history} handleTabClose={handleEdit}/>
+      <ContextMenu
+        tab={targetTab}
+        position={position}
+        history={history}
+        handleTabClose={handleEdit}
+        menuLabels={contextMenuLabels}
+      />
     </div>
   );
 };
 
-const TabLayout: React.FC<UmiComponentProps> = props => {
-  const { children, location, history } = props;
+interface TabLayoutProps extends UmiComponentProps {
+  contextMenuLabels?: ContextMenuLabels
+}
+
+const TabLayout: React.FC<TabLayoutProps> = props => {
+  const { children, location, history, contextMenuLabels } = props;
 
   return (
     <TabsProvider>
@@ -121,6 +132,7 @@ const TabLayout: React.FC<UmiComponentProps> = props => {
         history={history}
         location={location}
         defaultChildren={children}
+        contextMenuLabels={contextMenuLabels}
       />
     </TabsProvider>
   );

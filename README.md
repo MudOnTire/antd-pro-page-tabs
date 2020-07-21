@@ -6,6 +6,20 @@ Page tabs component for umi or ant design pro projects. 🚴🏻
 
 You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !!
 
+# Features
+
+* Enable/disable opening pages in tab by setting `RouteWatcher` or not
+
+* Keep pages' states alive when switching between tabs
+
+* Close opened tabs by click `x` button
+
+* Tab and route is a one-to-one relationship, pages of different route will be in different tabs, different pages of same route (like news detail pages) will be in the same tab (new page replace the old)
+
+* If all tabs are closed, page of root route `'/'` will be opened
+
+* With right-click context menus to 1. close target tab; 2. close tabs to the right; 3. close all tabs.
+
 # Requirements
 
 * React >= 16.8.x (I use react hooks under the hood)
@@ -43,6 +57,29 @@ import { TabLayout } from 'antd-pro-page-tabs';
 export default TabLayout;
 ```
 
+To customize context menu labels, you can:
+
+```js
+import React from 'react'
+import { TabLayout } from 'antd-pro-page-tabs';
+
+const contextMenuLabels = {
+  closeTab: '关闭标签',
+  closeRightTabs: '关闭右侧标签',
+  closeAllTabs: '关闭所有标签'
+}
+
+export default (props: any) => {
+  const { children } = props
+  return (
+    <TabLayout {...props} contextMenuLabels={contextMenuLabels} />
+  )
+}
+```
+
+And, here we go!
+
+![customize context menu](http://lc-3Cv4Lgro.cn-n1.lcfile.com/17c92b7247020b6693fa/context%20menu%20labels.png)
 
 **RouteWatcher.tsx**
 
@@ -94,20 +131,6 @@ export default {
 ```
 
 **💥 Don't forget to set `flatMenu` of the root route to `true`, it will hide the root route menu and lift the sub-routes to the top level, and then menus will be created for them.**
-
-# Features
-
-* Enable/disable opening pages in tab by setting `RouteWatcher` or not
-
-* Keep pages' states alive when switching between tabs
-
-* Close opened tabs by click `x` button
-
-* Tab and route is a one-to-one relationship, pages of different route will be in different tabs, different pages of same route (like news detail pages) will be in the same tab (new page replace the old)
-
-* If all tabs are closed, page of root route `'/'` will be opened
-
-* With right-click context menus to close target tab, close tabs to the right and close all tabs.
 
 # Todos
 

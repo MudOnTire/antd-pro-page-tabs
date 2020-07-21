@@ -40,3 +40,9 @@ export interface Position {
   x: number;
   y: number;
 }
+
+export interface ContextMenuLabels {
+  closeTab?: string,
+  closeRightTabs?: string,
+  closeAllTabs?: string
+}
