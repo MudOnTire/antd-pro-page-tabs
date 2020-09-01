@@ -1,13 +1,12 @@
 {
   "name": "antd-pro-page-tabs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Page tab component for umi or ant design pro projects",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "files": [
     "dist",
-    "README.md",
-    "demo.gif"
+    "README.md"
   ],
   "authors": {
     "name": "MudOnTire",
@@ -25,6 +24,7 @@
     "react": "^16.9.0"
   },
   "devDependencies": {
+    "react": "^16.9.0",
     "babel-plugin-import": "^1.13.0",
     "father": "^2.16.0",
     "typescript": "^3.3.3"
