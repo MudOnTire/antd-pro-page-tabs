@@ -98,7 +98,7 @@ const TabBar: React.FC<{
                   onContextMenu={(e) => { handleContextMenu(e, tab) }}
                   className={styles.tabLabel}
                 >
-                  {tab.route.name}
+                  {tab.route.tabLocalName || tab.route.name}
                 </span>
               }
               key={tab.location.pathname}>
