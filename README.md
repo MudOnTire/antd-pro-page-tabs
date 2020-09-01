@@ -18,7 +18,9 @@ You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !!
 
 * If all tabs are closed, page of root route `'/'` will be opened
 
-* With right-click context menus to 1. close target tab; 2. close tabs to the right; 3. close all tabs.
+* With right-click context menus to: 1. close target tab; 2. close tabs to the right; 3. close all tabs.
+
+* I18n support
 
 # Requirements
 
@@ -89,14 +91,39 @@ import { RouteWatcher } from 'antd-pro-page-tabs';
 export default RouteWatcher;
 ```
 
-Next, we update the routing configuration of our project like:
+## i18n support
+
+If your website need i18n, you can dynamically set a `tabLocalName` with its value set to a local version:
+
+```js
+import React from 'react';
+import { RouteWatcher } from 'antd-pro-page-tabs';
+import { useIntl } from 'umi';
+
+export default function (props: any) {
+  const intl = useIntl();
+  const { route } = props;
+  if (route.tabLocalId) {
+    route.tabLocalName = intl.formatMessage({ id: route.tabLocalId, defaultMessage: route.name });
+  }
+  return <RouteWatcher {...props} />
+}
+```
+
+Next, we update the routing configuration of our project:
 
 ```js
 const RouteWatcher = '@/components/PageTab/RouteWatcher';
 
 export default {
   ...
-
+  // i18n support
+  locale: {
+    default: 'zh-CN',
+    antd: true,
+    baseNavigator: true,
+    baseSeparator: '-',
+  },
   routes: [
     {
       path: '/',
@@ -105,6 +132,7 @@ export default {
       routes: [
         {
           name: 'Home',
+          tabLocalId: 'menu.Home', // id for i18n
           icon: 'smile',
           path: '/home',
           component: '@/pages/home',
@@ -112,6 +140,7 @@ export default {
         },
         {
           name: 'About',
+          tabLocalId: 'menu.About',
           icon: 'smile',
           path: '/about',
           component: '@/pages/about',
@@ -119,6 +148,7 @@ export default {
         },
         {
           name: 'Contact',
+          tabLocalId: 'menu.Contact',
           icon: 'smile',
           path: '/contact',
           component: '@/pages/contact',
@@ -133,8 +163,6 @@ export default {
 **💥 Don't forget to set `flatMenu` of the root route to `true`, it will hide the root route menu and lift the sub-routes to the top level, and then menus will be created for them.**
 
 # Todos
-
-While this library is still a simple prototype, there are a lot things i can do to make it better:
 
 * Add APIs to close specific tabs programmatically
 
