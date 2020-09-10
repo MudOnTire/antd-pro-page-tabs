@@ -93,7 +93,7 @@ import { RouteWatcher } from 'antd-pro-page-tabs';
 export default RouteWatcher;
 ```
 
-### 🌍🌍 i18n
+### 🌍🌍 I18N
 
 If your website need i18n, you can dynamically set a `tabLocalName` with its value set to a local version:
 
