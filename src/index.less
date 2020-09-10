@@ -1,23 +1,31 @@
 :global {
   .ant-layout-content .ant-page-tabs {
     margin-top: -24px;
-    .ant-page-tab-list > .ant-tabs-nav > .ant-tabs-nav-wrap {
-      margin-left: -24px;
-      margin-right: -24px;
+    .ant-page-tab-list {
+      overflow: visible;
+      & > .ant-tabs-nav {
+        margin-bottom: 24px;
+        & > .ant-tabs-nav-wrap {
+          margin-left: -24px;
+          margin-right: -24px;
+          background-color: #fff;
+        }
+      }
     }
   }
 
   .ant-pro-basicLayout-content-disable-margin .ant-page-tabs {
-    margin-top: -24px;
-    .ant-page-tab-list > .ant-tabs-nav > .ant-tabs-nav-wrap {
-      margin-left: -24px;
-      margin-right: -24px;
+    margin-top: 0;
+    .ant-page-tab-list > .ant-tabs-nav {
+      margin-bottom: unset;
+      & > .ant-tabs-nav-wrap {
+        margin-left: 0;
+        margin-right: 0;
+      }
     }
   }
 
   .ant-page-tabs {
-    background-color: #fff;
-
     .ant-tabs-nav {
       width: 100%;
       background-color: #fff;
