@@ -1,6 +1,6 @@
 {
   "name": "antd-pro-page-tabs",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Page tab component for umi or ant design pro projects",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
