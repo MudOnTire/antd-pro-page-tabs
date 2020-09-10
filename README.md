@@ -187,7 +187,7 @@ function BasicLayout(props){
 
 > You can find the full demo [Here!](https://github.com/MudOnTire/page-tabs-ant-pro4-app)
 
-# 🔭🔭 Todos
+# Todos
 
 * Add APIs to close specific tabs programmatically
 
