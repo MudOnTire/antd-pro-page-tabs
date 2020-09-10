@@ -30,7 +30,9 @@ You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !!
 
 * Ant Design >= 4
 
-# Installation
+# Usage
+
+## Install
 
 ```sh
 yarn add antd-pro-page-tabs
@@ -42,7 +44,7 @@ or
 npm install antd-pro-page-tabs
 ```
 
-# Setup
+## Setup
 
 This project depends on [umi](https://umijs.org/)'s [routing system](https://umijs.org/docs/routing) and [@umijs/plugin-layout
 ](https://umijs.org/plugins/plugin-layout), all top level routes should be wrapped in a `TabLayout`, and pages need to be displayed in a `Tab` should be wrapped by a `RouteWatcher` in order to notify the library when that page open..
@@ -91,7 +93,7 @@ import { RouteWatcher } from 'antd-pro-page-tabs';
 export default RouteWatcher;
 ```
 
-## i18n support
+### i18n
 
 If your website need i18n, you can dynamically set a `tabLocalName` with its value set to a local version:
 
@@ -161,6 +163,29 @@ export default {
 ```
 
 **💥 Don't forget to set `flatMenu` of the root route to `true`, it will hide the root route menu and lift the sub-routes to the top level, and then menus will be created for them.**
+
+
+### **How to use with `BasicLayout`**
+
+If your projects use customized layouts such as `BasicLayout` instead of [pro-layout](https://www.npmjs.com/package/@ant-design/pro-layout) directly，to use page tabs with these layouts we can simply wrap `children` with `TabLayout` component:
+
+**BasicLayout.js:**
+
+```tsx
+import { TabLayout } from 'antd-pro-page-tabs';
+
+function BasicLayout(props){
+  return (
+    <div>
+      <TabLayout {...props}>
+        {children}
+      </TabLayout>
+    </div>
+  )
+}
+```
+
+> You can find the full demo [Here!](https://github.com/MudOnTire/page-tabs-ant-pro4-app)
 
 # Todos
 
