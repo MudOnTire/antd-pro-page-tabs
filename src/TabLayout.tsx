@@ -82,8 +82,9 @@ const TabBar: React.FC<{
   useEffect(attachEvents, []);
 
   return (
-    <div className={styles.tabContainer}>
+    <div className='ant-page-tabs'>
       <Tabs
+        className='ant-page-tab-list'
         hideAdd
         type="editable-card"
         onChange={handleTabChange}

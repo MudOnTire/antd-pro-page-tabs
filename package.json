@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "father doc dev",
-    "build": "father build"
+    "build": "father build --watch"
   },
   "peerDependencies": {
     "react": "^16.9.0"

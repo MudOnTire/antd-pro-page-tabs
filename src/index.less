@@ -1,12 +1,27 @@
-.tabContainer {
-  background-color: #fff;
-  padding-top: 48px;
+:global {
+  .ant-layout-content .ant-page-tabs {
+    margin-top: -24px;
+    .ant-page-tab-list > .ant-tabs-nav > .ant-tabs-nav-wrap {
+      margin-left: -24px;
+      margin-right: -24px;
+    }
+  }
 
-  :global(.ant-tabs-nav) {
-    position: fixed;
-    top: 48px;
-    width: 100%;
+  .ant-pro-basicLayout-content-disable-margin .ant-page-tabs {
+    margin-top: -24px;
+    .ant-page-tab-list > .ant-tabs-nav > .ant-tabs-nav-wrap {
+      margin-left: -24px;
+      margin-right: -24px;
+    }
+  }
+
+  .ant-page-tabs {
     background-color: #fff;
+
+    .ant-tabs-nav {
+      width: 100%;
+      background-color: #fff;
+    }
   }
 }
 
