@@ -4,6 +4,15 @@
   "description": "Page tab component for umi or ant design pro projects",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "keywords": [
+    "页签",
+    "标签页",
+    "page tabs",
+    "umi",
+    "antd",
+    "ant design",
+    "ant design pro"
+  ],
   "files": [
     "dist",
     "README.md"
