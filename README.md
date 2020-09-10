@@ -4,7 +4,11 @@ Page tabs component for umi or ant design pro projects. 🚴🏻
 
 ![demo](https://raw.githubusercontent.com/MudOnTire/antd-pro-page-tabs/master/demo.gif)
 
-You can find the demo [HERE](https://github.com/MudOnTire/page-tabs-umi-app) !!
+# Demos
+
+* [UmiJS project](https://github.com/MudOnTire/page-tabs-umi-app)
+
+* [Ant design pro@4 project](https://github.com/MudOnTire/page-tabs-ant-pro4-app)
 
 # Features
 
