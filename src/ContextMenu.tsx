@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { context } from './context';
 import { Tab, CONTEXT_ACTIONS, Position, ContextMenuLabels } from './types';
+import { getTabKeyFromLocation } from './utils';
 
 import styles from './index.less';
 
@@ -26,7 +27,7 @@ const ContextMenu: React.FC<ContextMenuProps> = props => {
 
   const closeTab = () => {
     if (!tab) return;
-    handleTabClose(tab.location.pathname, 'remove');
+    handleTabClose(getTabKeyFromLocation(tab.location), 'remove');
   }
 
   const closeRightTabs = () => {

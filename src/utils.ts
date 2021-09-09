@@ -1,7 +1,12 @@
 import isEqual from 'lodash/isEqual';
 
+export function getTabKeyFromLocation(location: Location): string {
+  const { pathname, search, hash } = location;
+  return `${pathname}${search}${hash}`;
+}
+
 export function isTabActive(tabKey: string, location: any) {
-  return tabKey === location.pathname;
+  return tabKey === getTabKeyFromLocation(location);
 }
 
 export function isLocationChanged(prevLoca: any, currLoca: any) {
