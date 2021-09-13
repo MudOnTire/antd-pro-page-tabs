@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { context } from './context';
 import { Tab, CONTEXT_ACTIONS, Position, ContextMenuLabels } from './types';
+import { getTabKeyFromLocation, isTabActive } from './utils';
 
 import styles from './index.less';
 
@@ -9,11 +10,12 @@ interface ContextMenuProps {
   position: Position | undefined;
   history: any,
   handleTabClose: Function,
-  menuLabels?: ContextMenuLabels
+  menuLabels?: ContextMenuLabels,
+  activeKey: any
 }
 
 const ContextMenu: React.FC<ContextMenuProps> = props => {
-  const { tab, position, history, handleTabClose, menuLabels } = props;
+  const { tab, position, history, handleTabClose, menuLabels, activeKey } = props;
   const store = useContext(context);
   const { tabs, dispatch } = store;
 
@@ -26,14 +28,17 @@ const ContextMenu: React.FC<ContextMenuProps> = props => {
 
   const closeTab = () => {
     if (!tab) return;
-    handleTabClose(tab.location.pathname, 'remove');
+    handleTabClose(getTabKeyFromLocation(tab.location), 'remove');
   }
 
   const closeRightTabs = () => {
     if (!tab) return;
     const index = tabs.indexOf(tab);
     if (index < 0) return;
-    history.push(tab.location);
+    if(!isTabActive(activeKey, tab.location)){
+      const {pathname, query, hash} = tab.location;
+      history.push({pathname, query, hash});
+    }
     updateTabs(tabs.slice(0, index + 1));
   }
 

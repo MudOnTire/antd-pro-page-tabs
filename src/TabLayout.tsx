@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useMemo, useCallback } from 'react';
 import { Tabs } from 'antd';
 import { context, provider as TabsProvider } from './context';
 import { UmiComponentProps, CONTEXT_ACTIONS, Tab, Position, ContextMenuLabels } from './types';
-import { isTabActive } from './utils';
+import { isTabActive, getTabKeyFromLocation } from './utils';
 import ContextMenu from './ContextMenu';
 import styles from './index.less';
 
@@ -23,17 +23,20 @@ const TabBar: React.FC<{
   const { tabs, dispatch } = store;
 
   const { location, defaultChildren, history, contextMenuLabels } = props;
-  const isLocationInTab = tabs.some(
-    tab => tab.location.pathname === location.pathname,
-  );
 
-  const handleTabChange = (key: string) => {
-    const tab = tabs.find(t => t.location.pathname === key);
-    if (tab) {
-      history.push(tab.location);
+  const isLocationInTab = useMemo(() => {
+    return tabs.some(
+      tab => getTabKeyFromLocation(tab.location) === getTabKeyFromLocation(location)
+    );
+  }, [location]);
+
+  const handleTabChange = useCallback((key)=>{
+    const tab = tabs.find((t) => getTabKeyFromLocation(t.location)  === key);
+    if (tab && !isTabActive(key, location)) {
+      const {query, pathname, hash} = tab.location;
+      history.push({pathname, query, hash});
     }
-  };
-
+  }, [tabs, location, history])
   /**
    * Handle tab remove
    * @param tabKey Key of tab to be removed
@@ -41,15 +44,16 @@ const TabBar: React.FC<{
    */
   const handleEdit = (tabKey: any, action: 'add' | 'remove') => {
     if (action === 'remove') {
-      const tabIndex = tabs.findIndex(tab => tab.location.pathname === tabKey);
+      const tabIndex = tabs.findIndex(tab => getTabKeyFromLocation(tab.location) === tabKey);
       if (tabIndex < 0) return;
       let nextActiveTab;
       if (isTabActive(tabKey, location)) {
         nextActiveTab = tabs[tabIndex + 1] ||
-          tabs[tabIndex - 1] || { location: '/' };
+          tabs[tabIndex - 1] || { location: {pathname: '/'} };
       }
       if (nextActiveTab) {
-        history.push(nextActiveTab.location);
+        const {query, pathname, hash} = nextActiveTab.location;
+        history.push({pathname, query, hash});
       }
       const newTabs = [...tabs];
       newTabs.splice(tabIndex, 1);
@@ -89,7 +93,7 @@ const TabBar: React.FC<{
         type="editable-card"
         onChange={handleTabChange}
         onEdit={handleEdit}
-        activeKey={location.pathname}
+        activeKey={getTabKeyFromLocation(location)}
       >
         {tabs.map(tab => {
           return (
@@ -102,7 +106,7 @@ const TabBar: React.FC<{
                   {tab.route.tabLocalName || tab.route.name}
                 </span>
               }
-              key={tab.location.pathname}>
+              key={getTabKeyFromLocation(tab.location)}>
               {tab.children}
             </TabPane>
           );
@@ -110,6 +114,7 @@ const TabBar: React.FC<{
       </Tabs>
       {!isLocationInTab && defaultChildren}
       <ContextMenu
+        activeKey={getTabKeyFromLocation(location)}
         tab={targetTab}
         position={position}
         history={history}
