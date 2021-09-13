@@ -1,5 +1,6 @@
 import isEqual from 'lodash/isEqual';
 
+
 export function getTabKeyFromLocation(location: { pathname: any; search: any; hash: any; query: any; }): string {
   const { pathname, hash, query } = location;
   const queryStr = Object.entries(query).map(item=>item.join('=')).join('&');

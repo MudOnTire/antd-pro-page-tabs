@@ -24,11 +24,13 @@ const TabBar: React.FC<{
 
   const { location, defaultChildren, history, contextMenuLabels } = props;
 
+
   const isLocationInTab = useMemo(() => {
     return tabs.some(
       tab => getTabKeyFromLocation(tab.location) === getTabKeyFromLocation(location)
     );
   }, [location]);
+
 
   const handleTabChange = useCallback((key)=>{
     const tab = tabs.find((t) => getTabKeyFromLocation(t.location)  === key);
