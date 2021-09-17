@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useMemo } from 'react';
+import React, { useState, useContext, useEffect, useMemo, useCallback } from 'react';
 import { Tabs } from 'antd';
 import { context, provider as TabsProvider } from './context';
 import { UmiComponentProps, CONTEXT_ACTIONS, Tab, Position, ContextMenuLabels } from './types';
@@ -24,19 +24,21 @@ const TabBar: React.FC<{
 
   const { location, defaultChildren, history, contextMenuLabels } = props;
 
+
   const isLocationInTab = useMemo(() => {
     return tabs.some(
       tab => getTabKeyFromLocation(tab.location) === getTabKeyFromLocation(location)
     );
   }, [location]);
 
-  const handleTabChange = (key: string) => {
-    const tab = tabs.find(t => getTabKeyFromLocation(t.location) === key);
-    if (tab) {
-      history.push(tab.location);
-    }
-  };
 
+  const handleTabChange = useCallback((key)=>{
+    const tab = tabs.find((t) => getTabKeyFromLocation(t.location)  === key);
+    if (tab && !isTabActive(key, location)) {
+      const {query, pathname, hash} = tab.location;
+      history.push({pathname, query, hash});
+    }
+  }, [tabs, location, history])
   /**
    * Handle tab remove
    * @param tabKey Key of tab to be removed
@@ -49,10 +51,11 @@ const TabBar: React.FC<{
       let nextActiveTab;
       if (isTabActive(tabKey, location)) {
         nextActiveTab = tabs[tabIndex + 1] ||
-          tabs[tabIndex - 1] || { location: '/' };
+          tabs[tabIndex - 1] || { location: {pathname: '/'} };
       }
       if (nextActiveTab) {
-        history.push(nextActiveTab.location);
+        const {query, pathname, hash} = nextActiveTab.location;
+        history.push({pathname, query, hash});
       }
       const newTabs = [...tabs];
       newTabs.splice(tabIndex, 1);
@@ -113,6 +116,7 @@ const TabBar: React.FC<{
       </Tabs>
       {!isLocationInTab && defaultChildren}
       <ContextMenu
+        activeKey={getTabKeyFromLocation(location)}
         tab={targetTab}
         position={position}
         history={history}

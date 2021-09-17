@@ -9,6 +9,9 @@ export interface Tab {
   route: any;
   location: any;
   children: React.ReactNode;
+  query?: any,
+  pathname?: any,
+  hash?: any,
 }
 
 /**
